@@ -1,0 +1,63 @@
+<resources>
+    <string name="ver_number" translatable="false">1.0.1</string>
+    <string name="kofi_url" translatable="false">https://ko-fi.com/emlyn</string>
+
+
+    <string name="app_name">SnapNote</string>
+    <string name="title_newnote">New Note</string>
+    <string name="title_allnotes">All Notes</string>
+    <string name="title_settings">Settings</string>
+
+    <string name="no_browser">No web browser installed!</string>
+    <string name="no_notes_yet">No notes yet!</string>
+
+    <string name="version">Version %s</string>
+    <string name="tag_colors">Tag colors</string>
+    <string name="export_data">Export data</string>
+    <string name="import_data">Import data</string>
+    <string name="reset_all_settings">Clear all data!</string>
+    <string name="all_deleted">Deleted all data!</string>
+    <string name="dl_browser">Please download a file browser</string>
+    <string name="saved">Saved backup!</string>
+    <string name="default_name">snapnote.bin</string>
+
+    <string name="now">now</string>
+
+    <string name="dark_mode">Dark mode</string>
+    <string name="light_mode">Light mode</string>
+    <string name="sys_mode">Follow system</string>
+
+    <string name="clearing">Clearing…</string>
+    <string name="cleared">Cleared!</string>
+    <string name="menu_id">ID</string>
+    <string name="menu_az">A-Z</string>
+    <string name="menu_dt">Latest</string>
+    <string name="menu_tag">Tag</string>
+    <string name="version_placeholder">Version X.Y.Z</string>
+
+    <plurals name="mins_ago">
+        <item quantity="other">%d minutes ago</item>
+        <item quantity="one">%d minute ago</item>
+    </plurals>
+
+    <plurals name="hours_ago">
+        <item quantity="other">%d hours ago</item>
+        <item quantity="one">%d hour ago</item>
+    </plurals>
+
+
+    <string-array name="human_months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+</resources>

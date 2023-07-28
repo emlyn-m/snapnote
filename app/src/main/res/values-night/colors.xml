@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="accent">#ff8518de</color>
+    <color name="accent_blue">#FFC1B4AE</color>
+    <color name="warn">#FF832030</color>
+
+    <color name="background">#FF060505</color>
+    <color name="background_inv">#FFFFFFFF</color>
+    <color name="note_background">#FF121010</color>
+
+    <color name="textColor">#FFD3D2C7</color>
+
+</resources>

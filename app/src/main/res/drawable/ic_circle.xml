@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:width="48dp"
+    android:height="48dp"
+    android:shape="oval"
+    android:innerRadius="24dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <stroke
+        android:width="6dp"
+        android:color="@android:color/transparent" />
+
+    <solid
+        android:color="@color/background_inv" />
+</shape>

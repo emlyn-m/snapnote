@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="accent">#FF7D1D3F</color>
+    <color name="accent_blue">#FF4F646F</color>
+    <color name="warn">#ffd42237</color>
+
+    <color name="background">#FFFFFFFF</color>
+    <color name="background_inv">#FF000000</color>
+    <color name="note_background">#FFD3D2C7</color>
+
+    <color name="textColor">#FF000000</color>
+
+
+    <array name="tagColor_r1">
+        <item>#330538</item>
+        <item>#DEF6CA</item>
+        <item>#DE9151</item>
+        <item>#312E3E</item>
+    </array>
+
+    <array name="tagColor_r2">
+        <item>#8A1C7C</item>
+        <item>#F8BDC4</item>
+        <item>#F34213</item>
+        <item>#3B3355</item>
+    </array>
+
+    <array name="tagColor_r3">
+        <item>#DA4167</item>
+        <item>#C6E2E9</item>
+        <item>#4C5454</item>
+        <item>#5D5D81</item>
+    </array>
+
+    <array name="tagColor_r4">
+        <item>#FAA6FF</item>
+        <item>#FFCAAF</item>
+        <item>#BC5D2E</item>
+        <item>#BFCDE0</item>
+    </array>
+
+</resources>

@@ -1,0 +1,70 @@
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            android:width="48dp"
+            android:height="48dp"
+            android:shape="oval"
+            android:innerRadius="24dp"
+            android:viewportWidth="48"
+            android:viewportHeight="48">
+
+            <stroke
+                android:width="1dp"
+                android:color="@color/background_inv" />
+
+            <padding
+                android:right="2dp"
+                android:bottom="2dp"
+                android:left="2dp"
+                android:top="2dp" />
+
+        </shape>
+    </item>
+
+    <item>
+        <shape
+            android:width="48dp"
+            android:height="48dp"
+            android:shape="oval"
+            android:innerRadius="24dp"
+            android:viewportWidth="48"
+            android:viewportHeight="48">
+
+            <stroke
+                android:width="1dp"
+                android:color="@color/background" />
+
+            <padding
+                android:right="3dp"
+                android:bottom="3dp"
+                android:left="3dp"
+                android:top="3dp" />
+
+
+        </shape>
+
+    </item>
+
+    <item>
+        <shape
+            android:width="48dp"
+            android:height="48dp"
+            android:shape="oval"
+            android:innerRadius="24dp"
+            android:viewportWidth="48"
+            android:viewportHeight="48">
+
+            <solid
+                android:color="@color/background_inv" />
+
+            <padding
+                android:right="3dp"
+                android:bottom="3dp"
+                android:left="3dp"
+                android:top="3dp" />
+
+
+        </shape>
+    </item>
+</layer-list>
