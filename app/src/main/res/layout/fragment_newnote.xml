@@ -10,10 +10,10 @@
 
 
     <include
-        android:id="@+id/newNoteCard"
+        android:id="@+id/newNoteCardBackup"
         layout="@layout/layout_card" />
     <include
-        android:id="@+id/newNoteCardBackup"
+        android:id="@+id/newNoteCard"
         layout="@layout/layout_card" />
 
 

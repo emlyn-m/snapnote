@@ -153,6 +153,7 @@ class SettingsFragment : Fragment() {
                 (v as TextView).text = activity!!.resources.getText(R.string.cleared)
                 Handler(Looper.getMainLooper()).postDelayed({
                     v.text = activity!!.resources.getText(R.string.reset_all_settings)
+                    //todo: issue here if navigated away from settings tab before completion
                 }, 1000)
                 sp.edit().clear().apply()
                 sp.edit().putStringSet("notes", HashSet<String>()).apply()

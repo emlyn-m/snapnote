@@ -24,6 +24,7 @@ import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
 import androidx.core.graphics.*
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import xyz.emlyn.snapnote.Constants
@@ -81,9 +82,10 @@ class NewNoteFragment : Fragment() {
             setCardParameters(backupCard!!)
 
             currentCard!!.setOnTouchListener(this::currentCardOnTouchListener)
-            currentCard!!.bringToFront()
+//            currentCard!!.bringToFront()
             currentCard!!.findViewById<EditText>(R.id.newNoteET).keyListener = TextKeyListener.getInstance()
             backupCard!!.findViewById<EditText>(R.id.newNoteET).keyListener = null
+            
 
         }, 10)
 
@@ -118,13 +120,14 @@ class NewNoteFragment : Fragment() {
 
         if (ev.action == MotionEvent.ACTION_DOWN) {
 
+
             val imm =
                 context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(
-                currentCard!!.findViewById<EditText>(R.id.newNoteET).windowToken, 0
+                currentCard!!.getChildAt(1).windowToken, 0
             )
 
-
+            //above clear
             pivotX = currentCard!!.x + currentCard!!.width / 2f
             pivotY = currentCard!!.y + currentCard!!.height.toFloat()
 
@@ -134,6 +137,7 @@ class NewNoteFragment : Fragment() {
             keyDown = Triple(ev.rawX, ev.rawY, Instant.now().toEpochMilli())
 
             rotAnimator = currentCard!!.animate()
+
         }
 
         if (ev.action == MotionEvent.ACTION_MOVE) {
@@ -152,6 +156,8 @@ class NewNoteFragment : Fragment() {
             var theta = (((thetaRad * 180) / PI) * cardRotationSensitivity).toFloat()
             theta = if (rx2 - rx1 < 0) { -abs(theta) }
                     else { abs(theta) }
+
+            if (theta.isNaN()) { theta = 0f } // oh yeah - this fixes that stupid fuckin bug with them swapping z-indices lmaooo
 
             val dTheta = abs(currentCard!!.rotation - theta)
 
@@ -177,11 +183,14 @@ class NewNoteFragment : Fragment() {
                     cardContainer
                 ) as ConstraintLayout).getChildAt(cardContainer.childCount - 1) as CardView
                 currentCard!!.setOnTouchListener(this::currentCardOnTouchListener)
+
+
+
                 currentCard!!.bringToFront()
                 setCardParameters(backupCard!!)
 
-                currentCard!!.findViewById<EditText>(R.id.newNoteET).keyListener = TextKeyListener.getInstance()
-                backupCard!!.findViewById<EditText>(R.id.newNoteET).keyListener = null
+                (currentCard!!.getChildAt(1) as EditText).keyListener = TextKeyListener.getInstance()
+                (backupCard!!.getChildAt(1) as EditText).keyListener = null
 
 
 
@@ -195,25 +204,25 @@ class NewNoteFragment : Fragment() {
 
 
             if (euclidean(keyDown.first, keyDown.second, ev.rawX, ev.rawY) < 50f) {
-                if (currentCard!!.findViewById<EditText>(R.id.newNoteET).hasFocus()) {
+                if (currentCard!!.getChildAt(1).hasFocus()) {
 
-                    currentCard!!.findViewById<EditText>(R.id.newNoteET).clearFocus()
+                    currentCard!!.getChildAt(1).clearFocus()
                     val imm =
                         context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                     imm.hideSoftInputFromWindow(
-                        currentCard!!.findViewById<EditText>(R.id.newNoteET).windowToken, 0
+                        currentCard!!.getChildAt(1).windowToken, 0
                     )
 
                 } else {
-                    currentCard!!.bringToFront()
+//                    currentCard!!.bringToFront()
 
-                    currentCard!!.findViewById<EditText>(R.id.newNoteET).isFocusableInTouchMode =
+                    currentCard!!.getChildAt(1).isFocusableInTouchMode =
                         true
-                    currentCard!!.findViewById<EditText>(R.id.newNoteET).requestFocus()
+                    currentCard!!.getChildAt(1).requestFocus()
                     val imm =
                         context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                     imm.showSoftInput(
-                        currentCard!!.findViewById<EditText>(R.id.newNoteET),
+                        currentCard!!.getChildAt(1),
                         InputMethodManager.SHOW_IMPLICIT
                     )
                 }
@@ -230,7 +239,6 @@ class NewNoteFragment : Fragment() {
     }
 
     private fun removeCard(targetCard : CardView, rot : Float) {
-
 
         val px50dip = dipToPixels(context!!, 50f)
         val tclp = targetCard.layoutParams
