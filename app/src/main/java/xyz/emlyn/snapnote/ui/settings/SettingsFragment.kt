@@ -12,6 +12,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -152,8 +153,9 @@ class SettingsFragment : Fragment() {
             deleteIcoAnim!!.doOnEnd {
                 (v as TextView).text = activity!!.resources.getText(R.string.cleared)
                 Handler(Looper.getMainLooper()).postDelayed({
-                    v.text = activity!!.resources.getText(R.string.reset_all_settings)
-                    //todo: issue here if navigated away from settings tab before completion
+                    try {
+                        v.text = activity!!.resources.getText(R.string.reset_all_settings)
+                    } catch (_: java.lang.NullPointerException) {}
                 }, 1000)
                 sp.edit().clear().apply()
                 sp.edit().putStringSet("notes", HashSet<String>()).apply()
