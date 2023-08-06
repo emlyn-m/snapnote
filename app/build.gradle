@@ -4,20 +4,7 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        debug {
-            storeFile file('C:\\Users\\emlyn\\Documents\\snapnote-keys.jks')
-            storePassword 'Smiles987'
-            keyAlias 'key0'
-            keyPassword 'Smiles987'
-        }
-        release {
-            storeFile file('C:\\Users\\emlyn\\Documents\\snapnote-keys.jks')
-            storePassword 'Smiles987'
-            keyAlias 'key0'
-            keyPassword 'Smiles987'
-        }
-    }
+
     namespace 'xyz.emlyn.snapnote'
     compileSdk 32
 
