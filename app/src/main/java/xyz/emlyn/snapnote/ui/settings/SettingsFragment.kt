@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.activity.result.ActivityResultLauncher
+import androidx.appcompat.widget.SwitchCompat
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -50,8 +51,8 @@ class SettingsFragment : Fragment() {
 
         sp = activity!!.getSharedPreferences("xyz.emlyn.snapnote", MODE_PRIVATE)
         Handler(Looper.getMainLooper()).postDelayed({
-            activity!!.findViewById<SwitchMaterial>(R.id.registerAsCamera).setOnCheckedChangeListener(this::cameraShortcut)
-            activity!!.findViewById<SwitchMaterial>(R.id.registerAsCamera).isChecked = sp.getBoolean("cameraShortcut", false)
+            activity!!.findViewById<SwitchCompat>(R.id.registerAsCamera).setOnCheckedChangeListener(this::cameraShortcut)
+            activity!!.findViewById<SwitchCompat>(R.id.registerAsCamera).isChecked = sp.getBoolean("cameraShortcut", false)
 
         }, 10)
 

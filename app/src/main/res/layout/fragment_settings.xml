@@ -90,12 +90,14 @@
 
 
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/registerAsCamera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:thumbTint="@color/thumb_track"
+            app:trackTint="@color/track"
             app:layout_constraintEnd_toEndOf="parent" />
 
 
