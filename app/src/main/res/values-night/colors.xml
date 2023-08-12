@@ -9,6 +9,9 @@
     <color name="background">#FF060505</color>
     <color name="background_inv">#FFFFFFFF</color>
     <color name="note_background">#FF121010</color>
+    <color name="note_background_accent">#ff332d2d</color>
+    <color name="note_background_accent_pale">#ff1f1b1b</color>
+
 
     <color name="textColor">#FFD3D2C7</color>
 

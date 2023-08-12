@@ -20,6 +20,52 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
+            android:id="@+id/paletteTitle"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/color_palette"
+            android:textColor="@color/textColor"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="18sp"/>
+
+        <include
+            android:id="@+id/palette1"
+            layout="@layout/color_selector"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="10"
+            app:layout_constraintStart_toStartOf="@+id/paletteTitle"
+            android:layout_margin="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/paletteTitle" />
+
+        <include
+            android:id="@+id/palette2"
+            layout="@layout/color_selector"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="10"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/palette1"
+            app:layout_constraintEnd_toEndOf="@+id/palette1"
+            app:layout_constraintTop_toBottomOf="@+id/palette1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/themeCL"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/rounded_all"
+        android:backgroundTint="@color/note_background"
+        android:padding="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/colorSelector"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
             android:id="@+id/themeTitle"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -29,27 +75,106 @@
             app:layout_constraintStart_toStartOf="parent"
             android:textSize="18sp"/>
 
-        <include
-            android:id="@+id/theme1"
-            layout="@layout/color_selector"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/themeIcon"
             android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="10"
-            app:layout_constraintStart_toStartOf="@+id/themeTitle"
-            android:layout_margin="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/themeTitle" />
-
-        <include
-            android:id="@+id/theme2"
-            layout="@layout/color_selector"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="10"
-            android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="@+id/theme1"
-            app:layout_constraintEnd_toEndOf="@+id/theme1"
-            app:layout_constraintTop_toBottomOf="@+id/theme1" />
+            android:background="@drawable/pen_menu"
+            android:backgroundTint="@color/background_inv"
+            android:layout_margin="2dp"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintTop_toTopOf="@+id/themeTitle"
+            app:layout_constraintBottom_toBottomOf="@+id/themeTitle"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/themeLight"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="20dp"
+            android:textSize="16sp"
+            android:background="@drawable/rounded_all_4sp"
+            android:backgroundTint="@color/note_background_accent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/themeTitle"
+            app:layout_constraintEnd_toStartOf="@+id/themeDark">
+
+            <TextView
+                android:id="@+id/themeLightText"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+
+                android:text="@string/light"
+
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:textAlignment="center"
+                android:textColor="@color/textColor"
+                android:padding="5dp"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/themeDark"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="20dp"
+            android:textSize="16sp"
+            android:background="@drawable/rounded_all_4sp"
+            android:backgroundTint="@color/note_background_accent"
+
+            app:layout_constraintStart_toEndOf="@+id/themeLight"
+            app:layout_constraintTop_toBottomOf="@+id/themeTitle"
+            app:layout_constraintEnd_toStartOf="@+id/themeSys">
+
+            <TextView
+                android:id="@+id/themeDarkText"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+
+                android:text="@string/dark"
+
+
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:textAlignment="center"
+                android:textColor="@color/textColor"
+                android:padding="5dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/themeSys"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="20dp"
+            android:textSize="16sp"
+            android:background="@drawable/rounded_all_4sp"
+            android:backgroundTint="@color/note_background_accent"
+
+            app:layout_constraintStart_toEndOf="@+id/themeDark"
+            app:layout_constraintTop_toBottomOf="@+id/themeTitle"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/themeSysText"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+
+                android:text="@string/system"
+
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:textAlignment="center"
+                android:textColor="@color/textColor"
+                android:padding="5dp"
+                />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -57,9 +182,9 @@
         android:id="@+id/registerAsCameraCL"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/colorSelector"
-        app:layout_constraintEnd_toEndOf="@+id/colorSelector"
-        app:layout_constraintTop_toBottomOf="@+id/colorSelector"
+        app:layout_constraintStart_toStartOf="@+id/themeCL"
+        app:layout_constraintEnd_toEndOf="@+id/themeCL"
+        app:layout_constraintTop_toBottomOf="@+id/themeCL"
         android:background="@drawable/rounded_all"
         android:backgroundTint="@color/note_background"
         android:padding="20dp"
@@ -80,7 +205,7 @@
             android:id="@+id/registerCameraDesc"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
-            android:text="Allows the app to be opened with a camera shortcut"
+            android:text="Allows the app to be opened with a camera shortcut - May not work on some devices!"
             app:layout_constraintTop_toBottomOf="@+id/registerCameraTitle"
             app:layout_constraintEnd_toEndOf="@+id/registerCameraTitle"
             android:textSize="12sp"
@@ -100,6 +225,54 @@
             app:trackTint="@color/track"
             app:layout_constraintEnd_toEndOf="parent" />
 
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/importCL"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/rounded_all"
+        android:backgroundTint="@color/note_background"
+        android:padding="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/registerAsCameraCL"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/importTitle"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/export_data"
+            android:textColor="@color/textColor"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="18sp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/exportCL"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/rounded_all"
+        android:backgroundTint="@color/note_background"
+        android:padding="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/importCL"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/exportTitle"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/import_data"
+            android:textColor="@color/textColor"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="18sp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

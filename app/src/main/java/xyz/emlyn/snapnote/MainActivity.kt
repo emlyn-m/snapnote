@@ -1,9 +1,11 @@
 package xyz.emlyn.snapnote
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.ActionMenuView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -20,9 +22,22 @@ class MainActivity : AppCompatActivity() {
     var notesViews = ArrayList<View>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val theme = getSharedPreferences("xyz.emlyn.snapnote", MODE_PRIVATE).getInt("theme", 2)
+        if (theme == 0) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        } else if (theme == 1) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else if (theme == 2) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        }
+
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+
+
+
         setContentView(binding.root)
 
         val titleBar = findViewById<Toolbar>(R.id.toolbar)

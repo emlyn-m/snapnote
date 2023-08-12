@@ -25,9 +25,9 @@
 
     <string name="now">now</string>
 
-    <string name="dark_mode">Dark mode</string>
-    <string name="light_mode">Light mode</string>
-    <string name="sys_mode">Follow system</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
+    <string name="system">System</string>
 
     <string name="clearing">Clearing…</string>
     <string name="cleared">Cleared!</string>
@@ -36,6 +36,7 @@
     <string name="menu_dt">Latest</string>
     <string name="menu_tag">Tag</string>
     <string name="version_placeholder">Version X.Y.Z</string>
+    <string name="color_palette">Color Palette</string>
 
     <plurals name="mins_ago">
         <item quantity="other">%d minutes ago</item>
