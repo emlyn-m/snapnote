@@ -14,15 +14,12 @@
         android:theme="@style/Theme.SnapNote"
         tools:targetApi="31">
 
-        <activity
-            android:name=".MainActivity"
+
+        <activity-alias
+            android:targetActivity=".MainActivity"
+            android:name=".CameraShortcut"
             android:exported="true"
             android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
             <intent-filter>
                 <action android:name="android.media.action.IMAGE_CAPTURE"/>
@@ -37,9 +34,19 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
 
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+        </activity-alias>
+
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
     </application>
 

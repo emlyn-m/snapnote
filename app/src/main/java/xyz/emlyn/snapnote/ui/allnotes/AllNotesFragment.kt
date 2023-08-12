@@ -337,8 +337,10 @@ class AllNotesFragment : Fragment() {
         }
         (activity!! as MainActivity).notes = newNotes
         val notesEnc = ArrayList<String>()
-        for (i in 0 until notes.size) {
-            notesEnc.add(notes[i].renderToString())
+        if (newNotes.size != 0) {
+            for (i in 0 until notes.size) {
+                notesEnc.add(newNotes[i].renderToString())
+            }
         }
         sp.edit().putStringSet("notes", notesEnc.toHashSet()).commit()
 

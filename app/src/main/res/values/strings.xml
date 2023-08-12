@@ -1,7 +1,7 @@
 <resources>
     <string name="ver_number" translatable="false">1.0.2</string>
     <string name="kofi_url" translatable="false">https://ko-fi.com/emlyn</string>
-
+    <string name="package_name" translatable="false">xyz.emlyn.snapnote</string>
 
     <string name="app_name">SnapNote</string>
     <string name="title_newnote">New Note</string>
@@ -11,8 +11,10 @@
     <string name="no_browser">No web browser installed!</string>
     <string name="no_notes_yet">No notes yet!</string>
 
+    <string name="theme_select">Theme</string>
+
     <string name="version">Version %s</string>
-    <string name="tag_colors">Tag colors</string>
+    <string name="tag_colors">Tag colors</string> <!-- depr -->
     <string name="export_data">Export data</string>
     <string name="import_data">Import data</string>
     <string name="reset_all_settings">Clear all data!</string>

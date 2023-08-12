@@ -5,6 +5,15 @@ plugins {
 
 android {
 
+    signingConfigs {
+
+    debug {
+        storeFile file('C:\\users\\emlyn\\documents\\snapnote-debug-key.jks')
+        storePassword 'debugpwd'
+        keyAlias 'key0'
+        keyPassword 'debugpwd'
+    }
+    }
     namespace 'xyz.emlyn.snapnote'
     compileSdk 32
 
@@ -50,6 +59,4 @@ dependencies {
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
 
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 }
