@@ -6,14 +6,20 @@ import android.content.*
 import android.content.Context.MODE_PRIVATE
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
+import android.opengl.Visibility
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
+import android.renderscript.Sampler.Value
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.CompoundButton
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
@@ -21,6 +27,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet.GONE
+import androidx.core.animation.doOnEnd
+import androidx.core.os.postDelayed
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import xyz.emlyn.snapnote.MainActivity
@@ -42,7 +51,7 @@ class SettingsFragment : Fragment() {
     private lateinit var importAction : ActivityResultLauncher<String>
     private lateinit var exportAction : ActivityResultLauncher<String>
 
-    private var deleteIcoAnim : ValueAnimator? = null
+    private var deleteProgAnim : ValueAnimator? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,6 +69,12 @@ class SettingsFragment : Fragment() {
         Handler(Looper.getMainLooper()).postDelayed({
             activity!!.findViewById<SwitchCompat>(R.id.registerAsCamera).setOnCheckedChangeListener(this::cameraShortcut)
             activity!!.findViewById<SwitchCompat>(R.id.registerAsCamera).isChecked = sp.getBoolean("cameraShortcut", false)
+
+            activity!!.findViewById<ConstraintLayout>(R.id.importCL).setOnClickListener(this::importOCL)
+            activity!!.findViewById<ConstraintLayout>(R.id.exportCL).setOnClickListener(this::exportOCL)
+
+            activity!!.findViewById<ConstraintLayout>(R.id.deleteCL).setOnTouchListener(this::deleteOTL)
+
 
             activity!!.findViewById<LinearLayout>(R.id.themeLight).setOnClickListener(this::themeOnclick)
             activity!!.findViewById<LinearLayout>(R.id.themeDark).setOnClickListener(this::themeOnclick)
@@ -94,6 +109,60 @@ class SettingsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun deleteOTL(v : View, ev : MotionEvent) : Boolean {
+
+        if (ev.action == MotionEvent.ACTION_DOWN) {
+            activity!!.findViewById<TextView>(R.id.deleteTitle).visibility = View.INVISIBLE
+            activity!!.findViewById<ImageView>(R.id.deleteProgress).visibility = View.VISIBLE
+            val maxDLPWidth = activity!!.findViewById<ImageView>(R.id.deleteProgress).measuredWidth
+            deleteProgAnim = ValueAnimator.ofFloat(0f, 1f)
+            deleteProgAnim!!.addUpdateListener {
+                run {
+                    val dlplp =
+                        activity!!.findViewById<ImageView>(R.id.deleteProgress).layoutParams as ConstraintLayout.LayoutParams
+                    dlplp.width = (it.animatedFraction * maxDLPWidth).toInt()
+                    activity!!.findViewById<ImageView>(R.id.deleteProgress).layoutParams = dlplp
+
+                }
+            }
+
+            deleteProgAnim!!.doOnEnd {
+                val dlplp = activity!!.findViewById<ImageView>(R.id.deleteProgress).layoutParams
+                dlplp.width = 0
+                activity!!.findViewById<ImageView>(R.id.deleteProgress).layoutParams = dlplp
+
+                activity!!.findViewById<TextView>(R.id.deleteTitle).text = getString(R.string.all_deleted)
+                activity!!.findViewById<TextView>(R.id.deleteTitle).visibility = View.VISIBLE
+                activity!!.findViewById<ImageView>(R.id.deleteProgress).visibility = View.INVISIBLE
+
+                Handler(Looper.getMainLooper()).postDelayed({
+
+                    activity!!.findViewById<TextView>(R.id.deleteTitle).text = getString(R.string.reset_all_settings)
+
+                }, 500)
+            }
+
+            deleteProgAnim!!.duration = 3000.toLong()
+            deleteProgAnim!!.start()
+
+        } else if (ev.action == MotionEvent.ACTION_UP) {
+            activity!!.findViewById<TextView>(R.id.deleteTitle).visibility = View.VISIBLE
+            activity!!.findViewById<ImageView>(R.id.deleteProgress).visibility = View.INVISIBLE
+            deleteProgAnim?.cancel()
+
+        }
+
+        return false
+    }
+
+    fun importOCL(v : View) {
+
+    }
+
+    fun exportOCL(v : View) {
+
     }
 
     fun themeOnclick(v : View) {
