@@ -385,9 +385,10 @@
 
                     <ImageView
                         android:id="@+id/deleteIco"
-                        android:layout_width="24sp"
-                        android:layout_height="24sp"
-                        android:background="@drawable/ic_circle"
+                        android:layout_width="18sp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/trash"
+                        app:tint="@color/warn"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="1"
                         app:layout_constraintEnd_toEndOf="parent"

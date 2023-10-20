@@ -14,7 +14,6 @@
 
     <string name="version">Version %s</string>
     <string name="tag_colors">Tag colors</string> <!-- depr -->
-    <string name="all_deleted">Deleted all data!</string>
     <string name="dl_browser">Please download a file browser</string>
     <string name="saved">Saved backup!</string>
     <string name="default_name">snapnote.bin</string>
@@ -27,14 +26,15 @@
     <string name="export_data"><b>Export data</b></string>
     <string name="import_data"><b>Import data</b></string>
     <string name="reset_all_settings"><b>Clear all data!</b></string>
+    <string name="all_deleted"><b>Deleted all data!</b></string>
+
+
 
 
     <string name="dark">Dark</string>
     <string name="light">Light</string>
     <string name="system">System</string>
 
-    <string name="clearing">Clearing…</string>
-    <string name="cleared">Cleared!</string>
     <string name="menu_id">ID</string>
     <string name="menu_az">A-Z</string>
     <string name="menu_dt">Latest</string>

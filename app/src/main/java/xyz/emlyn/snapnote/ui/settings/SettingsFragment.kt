@@ -55,6 +55,8 @@ class SettingsFragment : Fragment() {
     private lateinit var importAction : ActivityResultLauncher<String>
     private lateinit var exportAction : ActivityResultLauncher<String>
 
+    private var deleteAllCancelled = false;
+
     private var deleteProgAnim : ValueAnimator? = null
 
     override fun onCreateView(
@@ -134,7 +136,6 @@ class SettingsFragment : Fragment() {
             setActiveTheme(sp.getInt("palette", 0))
 
 
-
         }, 10)
 
         return root
@@ -175,10 +176,12 @@ class SettingsFragment : Fragment() {
     fun deleteOTL(v : View, ev : MotionEvent) : Boolean {
 
         if (ev.action == MotionEvent.ACTION_DOWN) {
+            deleteAllCancelled = false
+
             activity!!.findViewById<TextView>(R.id.deleteTitle).visibility = View.INVISIBLE
             val maxDLPWidth = activity!!.findViewById<ImageView>(R.id.deleteProgress).measuredWidth
             deleteProgAnim = ValueAnimator.ofFloat(0f, 1f)
-            v.findViewById<ImageView>(R.id.deleteIco).background = context!!.getDrawable(R.drawable.ic_baseline_sort_24)
+            v.findViewById<ImageView>(R.id.deleteIco).background = context!!.getDrawable(R.drawable.trash_open)
             val initDlplp = activity!!.findViewById<ImageView>(R.id.deleteProgress).layoutParams as ConstraintLayout.LayoutParams
             initDlplp.width = 0
             activity!!.findViewById<ImageView>(R.id.deleteProgress).layoutParams = initDlplp
@@ -196,23 +199,32 @@ class SettingsFragment : Fragment() {
             }
 
             deleteProgAnim!!.doOnEnd {
-                v.findViewById<ImageView>(R.id.deleteIco).background = context!!.getDrawable(R.drawable.ic_circle)
+
+                v.findViewById<ImageView>(R.id.deleteIco).background =
+                    context!!.getDrawable(R.drawable.trash)
                 val dlplp = activity!!.findViewById<ImageView>(R.id.deleteProgress).layoutParams
                 dlplp.width = 0
                 activity!!.findViewById<ImageView>(R.id.deleteProgress).layoutParams = dlplp
 
-                activity!!.findViewById<TextView>(R.id.deleteTitle).text = getString(R.string.all_deleted)
-                activity!!.findViewById<TextView>(R.id.deleteTitle).visibility = View.VISIBLE
-                activity!!.findViewById<ImageView>(R.id.deleteProgress).visibility = View.INVISIBLE
+                if (!deleteAllCancelled) {
 
-                sp.edit().clear().commit()
-                refreshSettingsFragment()
+                    activity!!.findViewById<TextView>(R.id.deleteTitle).text =
+                        getString(R.string.all_deleted)
+                    activity!!.findViewById<TextView>(R.id.deleteTitle).visibility = View.VISIBLE
+                    activity!!.findViewById<ImageView>(R.id.deleteProgress).visibility =
+                        View.INVISIBLE
+
+                    sp.edit().clear().commit()
+                    refreshSettingsFragment()
+
+                }
             }
 
             deleteProgAnim!!.duration = 3000.toLong()
             deleteProgAnim!!.start()
 
         } else if (ev.action == MotionEvent.ACTION_UP) {
+            deleteAllCancelled = true
             activity!!.findViewById<TextView>(R.id.deleteTitle).visibility = View.VISIBLE
             activity!!.findViewById<ImageView>(R.id.deleteProgress).visibility = View.INVISIBLE
             deleteProgAnim?.cancel()
