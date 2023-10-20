@@ -45,9 +45,10 @@
                     layout="@layout/color_selector"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    app:layout_constraintDimensionRatio="10"
+                    app:layout_constraintDimensionRatio="6"
                     app:layout_constraintStart_toStartOf="@+id/paletteTitle"
-                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/paletteTitle" />
 
@@ -56,11 +57,33 @@
                     layout="@layout/color_selector"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:layout_constraintDimensionRatio="10"
+                    app:layout_constraintDimensionRatio="6"
                     android:layout_marginTop="10dp"
                     app:layout_constraintStart_toStartOf="@+id/palette1"
                     app:layout_constraintEnd_toEndOf="@+id/palette1"
                     app:layout_constraintTop_toBottomOf="@+id/palette1" />
+
+                <include
+                    android:id="@+id/palette3"
+                    layout="@layout/color_selector"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="6"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintStart_toStartOf="@+id/palette1"
+                    app:layout_constraintEnd_toEndOf="@+id/palette1"
+                    app:layout_constraintTop_toBottomOf="@+id/palette2" />
+
+                <include
+                    android:id="@+id/palette4"
+                    layout="@layout/color_selector"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="6"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintStart_toStartOf="@+id/palette1"
+                    app:layout_constraintEnd_toEndOf="@+id/palette1"
+                    app:layout_constraintTop_toBottomOf="@+id/palette3" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -206,7 +229,7 @@
                     android:id="@+id/registerCameraTitle"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Register as camera app"
+                    android:text="@string/cam_register"
                     android:textColor="@color/textColor"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -364,7 +387,7 @@
                         android:id="@+id/deleteIco"
                         android:layout_width="24sp"
                         android:layout_height="24sp"
-                        android:background="@color/warn"
+                        android:background="@drawable/ic_circle"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="1"
                         app:layout_constraintEnd_toEndOf="parent"

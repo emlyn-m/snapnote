@@ -15,6 +15,16 @@ public class Constants {
 
     public static char HS_SEP = '\ue005';
 
+    public static int[][] getNoteGradients(Context context) {
+        return new int[][] {
+                context.getResources().getIntArray(R.array.gradient_1),
+                context.getResources().getIntArray(R.array.gradient_2),
+                context.getResources().getIntArray(R.array.gradient_3),
+                context.getResources().getIntArray(R.array.gradient_4),
+
+        };
+    }
+
     public static int[][] getTagChoices(Context context) {
         return new int[][] {
                 context.getResources().getIntArray(R.array.tagColor_r1),

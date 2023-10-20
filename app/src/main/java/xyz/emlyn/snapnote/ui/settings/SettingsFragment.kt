@@ -6,6 +6,8 @@ import android.content.*
 import android.content.Context.MODE_PRIVATE
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.opengl.Visibility
 import android.os.Bundle
 import android.os.Handler
@@ -27,11 +29,13 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet.Constraint
 import androidx.constraintlayout.widget.ConstraintSet.GONE
 import androidx.core.animation.doOnEnd
 import androidx.core.os.postDelayed
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import xyz.emlyn.snapnote.Constants
 import xyz.emlyn.snapnote.MainActivity
 import xyz.emlyn.snapnote.R
 import xyz.emlyn.snapnote.databinding.FragmentSettingsBinding
@@ -101,9 +105,61 @@ class SettingsFragment : Fragment() {
             }
 
 
+            val gradients = Constants.getNoteGradients(context!!)
+            val tags = Constants.getTagChoices(context!!)
+
+            // generate color palettes
+            val palettes = arrayOf(
+                activity!!.findViewById<ConstraintLayout>(R.id.palette1),
+                activity!!.findViewById(R.id.palette2),
+                activity!!.findViewById(R.id.palette3),
+                activity!!.findViewById(R.id.palette4),
+            )
+
+            for (i in 0..3) {
+
+                palettes[i].setOnClickListener { setActiveTheme(i); }
+
+                val gd = GradientDrawable(
+                    GradientDrawable.Orientation.LEFT_RIGHT,
+                    intArrayOf(gradients[i][0], gradients[i][1])
+                )
+                (palettes[i].getChildAt(0) as LinearLayout).getChildAt(0).setBackgroundDrawable(gd)
+
+                for (j in 0..3) {
+                    (palettes[i].getChildAt(1) as LinearLayout).getChildAt(j).setBackgroundColor(tags[i][j])
+                }
+            }
+
+            setActiveTheme(sp.getInt("palette", 0))
+
+
+
         }, 10)
 
         return root
+    }
+
+    private fun setActiveTheme(themeIdx : Int) {
+
+        sp.edit().putInt("palette", themeIdx).apply()
+
+        val palettes = arrayOf(
+            activity!!.findViewById<ConstraintLayout>(R.id.palette1),
+            activity!!.findViewById(R.id.palette2),
+            activity!!.findViewById(R.id.palette3),
+            activity!!.findViewById(R.id.palette4),
+        )
+
+        for (i in 0..3) {
+            if (i == themeIdx) {
+                palettes[i].backgroundTintList =
+                    ColorStateList.valueOf(context!!.getColor(R.color.note_background_accent_pale))
+            } else {
+                palettes[i].backgroundTintList =
+                    ColorStateList.valueOf(context!!.getColor(R.color.note_background))
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -111,13 +167,24 @@ class SettingsFragment : Fragment() {
         _binding = null
     }
 
+    fun refreshSettingsFragment() {
+        //todo: this
+        activity!!.recreate()
+    }
+
     fun deleteOTL(v : View, ev : MotionEvent) : Boolean {
 
         if (ev.action == MotionEvent.ACTION_DOWN) {
             activity!!.findViewById<TextView>(R.id.deleteTitle).visibility = View.INVISIBLE
-            activity!!.findViewById<ImageView>(R.id.deleteProgress).visibility = View.VISIBLE
             val maxDLPWidth = activity!!.findViewById<ImageView>(R.id.deleteProgress).measuredWidth
             deleteProgAnim = ValueAnimator.ofFloat(0f, 1f)
+            v.findViewById<ImageView>(R.id.deleteIco).background = context!!.getDrawable(R.drawable.ic_baseline_sort_24)
+            val initDlplp = activity!!.findViewById<ImageView>(R.id.deleteProgress).layoutParams as ConstraintLayout.LayoutParams
+            initDlplp.width = 0
+            activity!!.findViewById<ImageView>(R.id.deleteProgress).layoutParams = initDlplp
+            activity!!.findViewById<ImageView>(R.id.deleteProgress).visibility = View.VISIBLE
+
+
             deleteProgAnim!!.addUpdateListener {
                 run {
                     val dlplp =
@@ -129,6 +196,7 @@ class SettingsFragment : Fragment() {
             }
 
             deleteProgAnim!!.doOnEnd {
+                v.findViewById<ImageView>(R.id.deleteIco).background = context!!.getDrawable(R.drawable.ic_circle)
                 val dlplp = activity!!.findViewById<ImageView>(R.id.deleteProgress).layoutParams
                 dlplp.width = 0
                 activity!!.findViewById<ImageView>(R.id.deleteProgress).layoutParams = dlplp
@@ -137,11 +205,8 @@ class SettingsFragment : Fragment() {
                 activity!!.findViewById<TextView>(R.id.deleteTitle).visibility = View.VISIBLE
                 activity!!.findViewById<ImageView>(R.id.deleteProgress).visibility = View.INVISIBLE
 
-                Handler(Looper.getMainLooper()).postDelayed({
-
-                    activity!!.findViewById<TextView>(R.id.deleteTitle).text = getString(R.string.reset_all_settings)
-
-                }, 500)
+                sp.edit().clear().commit()
+                refreshSettingsFragment()
             }
 
             deleteProgAnim!!.duration = 3000.toLong()

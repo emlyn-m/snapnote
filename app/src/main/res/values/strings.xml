@@ -11,19 +11,23 @@
     <string name="no_browser">No web browser installed!</string>
     <string name="no_notes_yet">No notes yet!</string>
 
-    <string name="theme_select">Theme</string>
 
     <string name="version">Version %s</string>
     <string name="tag_colors">Tag colors</string> <!-- depr -->
-    <string name="export_data">Export data</string>
-    <string name="import_data">Import data</string>
-    <string name="reset_all_settings">Clear all data!</string>
     <string name="all_deleted">Deleted all data!</string>
     <string name="dl_browser">Please download a file browser</string>
     <string name="saved">Saved backup!</string>
     <string name="default_name">snapnote.bin</string>
 
     <string name="now">now</string>
+
+    <string name="color_palette"><b>Color Palette</b></string>
+    <string name="theme_select"><b>Theme</b></string>
+    <string name="cam_register"><b>Register as camera app</b></string>
+    <string name="export_data"><b>Export data</b></string>
+    <string name="import_data"><b>Import data</b></string>
+    <string name="reset_all_settings"><b>Clear all data!</b></string>
+
 
     <string name="dark">Dark</string>
     <string name="light">Light</string>
@@ -36,7 +40,6 @@
     <string name="menu_dt">Latest</string>
     <string name="menu_tag">Tag</string>
     <string name="version_placeholder">Version X.Y.Z</string>
-    <string name="color_palette">Color Palette</string>
 
     <plurals name="mins_ago">
         <item quantity="other">%d minutes ago</item>

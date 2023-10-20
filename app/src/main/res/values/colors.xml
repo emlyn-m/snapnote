@@ -14,6 +14,25 @@
 
     <color name="textColor">#FF000000</color>
 
+    <array name="gradient_1">
+        <item>#FFFF0000</item>
+        <item>#FF00FF00</item>
+    </array>
+
+    <array name="gradient_2">
+        <item>#FF00FFFF</item>
+        <item>#FFFF00FF</item>
+    </array>
+
+    <array name="gradient_3">
+        <item>#FF0F0FF0</item>
+        <item>#FFDFFF00</item>
+    </array>
+
+    <array name="gradient_4">
+        <item>#FFcccccc</item>
+        <item>#FF00FF00</item>
+    </array>
 
     <array name="tagColor_r1">
         <item>#330538</item>

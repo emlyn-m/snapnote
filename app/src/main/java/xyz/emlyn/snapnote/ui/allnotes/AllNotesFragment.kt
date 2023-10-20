@@ -82,12 +82,7 @@ class AllNotesFragment : Fragment() {
                     .getDefault()
             ) == ViewCompat.LAYOUT_DIRECTION_RTL
             sp = activity!!.getSharedPreferences("xyz.emlyn.snapnote", MODE_PRIVATE)
-            tagIdx = arrayOf(
-                sp.getInt("tag0", 0),
-                sp.getInt("tag1", 0),
-                sp.getInt("tag2", 0),
-                sp.getInt("tag3", 0),
-            )
+            tagIdx = Constants.getTagChoices(context!!)[sp.getInt("palette", 0)].toTypedArray()
             activity!!.findViewById<ScrollView>(R.id.scrollView)
                 .setOnTouchListener(this::swipeListener)
             populateNotes()
@@ -204,6 +199,7 @@ class AllNotesFragment : Fragment() {
             blendMode = PorterDuff.Mode.DARKEN
         }
 
+        val palette = sp.getInt("palette", 0)
 
         for ((i, note) in notes.withIndex()) {
 
@@ -234,8 +230,10 @@ class AllNotesFragment : Fragment() {
                 vv.setOnClickListener(this::tagColorSelectorOnclick)
                 if (j == 0 && note.tagColor == Color.argb(0,0,0,0)) { vv.background = activity!!.getDrawable(R.drawable.ic_circle_notag_outline) }
                 if (j > 0) {
-                    if (note.tagColor == Constants.getTagChoices(context)[j-1][tagIdx[j-1]]) { vv.background = activity!!.getDrawable(R.drawable.ic_circle_outline) }
-                    vv.backgroundTintList = ColorStateList.valueOf(Constants.getTagChoices(context)[j-1][tagIdx[j-1]])
+                    if (note.tagColor == Constants.getTagChoices(context)[palette][j-1]) {
+                        vv.background = activity!!.getDrawable(R.drawable.ic_circle_outline)
+                    }
+                    vv.backgroundTintList = ColorStateList.valueOf(Constants.getTagChoices(context)[palette][j-1])
                     vv.backgroundTintMode = blendMode
                 }
             }

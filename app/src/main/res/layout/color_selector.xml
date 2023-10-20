@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@drawable/rounded_all"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -17,28 +19,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/colorPaletteIV1"
+            android:id="@+id/colorPaletteGradient"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1" />
 
-        <ImageView
-            android:id="@+id/colorPaletteIV2"
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:id="@+id/colorPaletteIV3"
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:id="@+id/colorPaletteIV4"
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="1" />
 
     </LinearLayout>
 
